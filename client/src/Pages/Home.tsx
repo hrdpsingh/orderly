@@ -89,6 +89,13 @@ export default function Home() {
 
       {loading && (
         <div className="mt-8 space-y-3">
+          <div
+            role="status"
+            className="rounded-2xl border border-amber-500/30 bg-amber-500/5 p-4 text-center text-sm text-amber-200"
+          >
+            Analyzing issues… the first request may take up to 50 seconds while
+            the free backend hosting spins up.
+          </div>
           {[0, 1, 2].map((i) => (
             <div
               key={i}

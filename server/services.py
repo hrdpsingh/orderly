@@ -133,13 +133,12 @@ async def categorize_issue_list(
         assigned_priority = priority_labels[best_match_idx]
 
         body = issue.get("body") or ""
-        truncated_body = body[:500] + "..." if len(body) > 500 else body
 
         results.append(
             IssueResponse(
                 id=issue["id"],
                 title=issue["title"],
-                body=truncated_body,
+                body=body,
                 assigned_priority=assigned_priority,
                 match_scores=match_scores,
             )
