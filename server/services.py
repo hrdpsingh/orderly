@@ -11,6 +11,11 @@ from models import CategorizeResponse, IssueResponse
 
 load_dotenv()
 
+load_dotenv()
+GITHUB_PAT = os.environ["GITHUB_PAT"]
+
+headers = {"Authorization": f"Bearer {GITHUB_PAT}"}
+
 MODEL_ID = "sentence-transformers/all-mpnet-base-v2"
 MAX_RETRIES = 4
 
@@ -89,7 +94,7 @@ async def fetch_github_issues(owner: str, repo: str) -> list[dict]:
     url = f"https://api.github.com/repos/{owner}/{repo}/issues"
 
     async with httpx.AsyncClient() as client:
-        response = await client.get(url, timeout=30)
+        response = await client.get(url, timeout=30, headers=headers)
 
     if response.status_code != 200:
         raise HTTPException(
