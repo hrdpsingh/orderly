@@ -9,7 +9,7 @@ interface CategorizeResponse {
   issues: Issue[];
 }
 
-const API_URL = "http://localhost:8000";
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
 
 export default function Home() {
   const [data, setData] = useState<CategorizeResponse | null>(null);
